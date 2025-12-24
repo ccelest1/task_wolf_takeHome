@@ -1,0 +1,53 @@
+h1 {
+    color: black;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.mainDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 20vh;
+}
+
+
+/* @media (max-width: 768px) {
+    .mainDiv {
+        display: flex;
+        flex-direction: column;
+    }
+} */
+
+h2 {
+    text-align: center;
+}
+
+ul,
+.currentListDiv {
+    border: 1px solid black;
+    margin: 5vh;
+    padding: 20vh;
+}
+
+ul.pastListUl {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.currentListDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
