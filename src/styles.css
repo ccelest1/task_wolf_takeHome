@@ -22,12 +22,12 @@ body {
 }
 
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .mainDiv {
         display: flex;
         flex-direction: column;
     }
-} */
+}
 
 h2 {
     text-align: center;
@@ -37,7 +37,7 @@ ul,
 .currentListDiv {
     border: 1px solid black;
     margin: 5vh;
-    padding: 20vh;
+    padding: 10vh;
 }
 
 ul.pastListUl {
@@ -45,6 +45,9 @@ ul.pastListUl {
     flex-direction: column;
 }
 
+.divDone {
+    margin-bottom: 10px;
+}
 
 .currentListDiv {
     display: flex;

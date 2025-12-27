@@ -1,6 +1,6 @@
 // EDIT THIS FILE TO COMPLETE ASSIGNMENT QUESTION 1
 import * as playwright from 'playwright';
-import { openFrontendHtml, dataIngest, return_done } from "./src/index.js";
+import { openFrontendHtml, dataIngest, return_done, finished } from "./src/index.js";
 
 async function sortHackerNewsArticles() {
   // launch browser
@@ -18,7 +18,8 @@ async function sortHackerNewsArticles() {
       const tbody = page_hackerNews.locator('.subtext .subline span.age');
       let evalTitles = [];
 
-      while (evalTitles.length < 100) {
+      while (evalTitles.length <= 100) {
+        console.log(evalTitles.length)
         const titles = await tbody.evaluateAll(
           elements => elements.map(element => element.title)
         );
@@ -31,21 +32,23 @@ async function sortHackerNewsArticles() {
             }
           }
           if (evalTitles.length < 100) {
-            console.log(newDate)
             await dataIngest(uiPage, evalTitles, newDate)
             evalTitles.push(newDate)
-            await page_hackerNews.waitForTimeout(1000)
+            await page_hackerNews.waitForTimeout(100)
           }
         }
 
-        if (evalTitles.length < 100) {
+        if (evalTitles.length <= 100) {
           await uiPage.bringToFront();
           await page_hackerNews.evaluate(() => {
             document.querySelector('a.morelink').click();
           })
           await page_hackerNews.waitForTimeout(1000); // wait for load
         }
-        if (evalTitles === 100) {
+
+        if (evalTitles.length < 101 && evalTitles.length === 100) {
+          finished(uiPage)
+          await dataIngest(uiPage, evalTitles, evalTitles[evalTitles.length-1])
           break
         }
       }
